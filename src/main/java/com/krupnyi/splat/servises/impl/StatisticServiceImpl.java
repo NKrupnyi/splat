@@ -26,11 +26,7 @@ public class StatisticServiceImpl implements StatisticService {
 
     @Override
     public void incQueryCount(String methodId) {
-        Long previousValue = queryCountMap.getOrDefault(methodId, 0L);
-        if (previousValue == Long.MAX_VALUE) {
-            this.init();
-        }
-        queryCountMap.put(methodId, previousValue + 1);
+        queryCountMap.merge(methodId, 1L, Long::sum);
     }
 
     @Override
