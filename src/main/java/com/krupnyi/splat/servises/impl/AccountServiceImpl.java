@@ -24,7 +24,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @Transactional
     public void addAmount(Integer id, Long value) {
-        Long oldAmount = accountRepository.getAmount(id);
-        accountRepository.setAmount(id, oldAmount + value);
+        accountRepository.addAmount(id, value);
     }
 }
